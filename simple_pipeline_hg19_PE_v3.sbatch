@@ -30,7 +30,7 @@ R2=$filebase"_R2.fastq.gz"
 
 #if [ ! -f $filebase".hg19.all.bam" ]
 #then
-bowtie2 -p 8 -x $indexpath/hg19 -q -1 $R1 -2 $R2 --fast 2> $filebase".hg19.all.bowtie.log" | samtools view -bS -F 4  - | samtools sort -o $filebase".hg19.all.bam" -
+bowtie2 -p 8 -x $indexpath/hg19 -5 19 -q -1 $R1 -2 $R2 --fast 2> $filebase".hg19.all.bowtie.log" | samtools view -bS -F 4  - | samtools sort -o $filebase".hg19.all.bam" -
 samtools index $filebase".hg19.all.bam"
 samtools flagstat $filebase".hg19.all.bam" > $filebase".hg19.all.flagstat.txt"
 samtools idxstats $filebase".hg19.all.bam" > $filebase".hg19.all.idxstats.txt"

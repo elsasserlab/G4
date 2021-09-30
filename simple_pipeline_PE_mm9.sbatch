@@ -29,7 +29,7 @@ R1=$filebase"_R1.fastq.gz"
 R2=$filebase"_R2.fastq.gz"
 
 #unique to Cut&Tag: remove 19bp mosaic adaptor sequence
-bowtie2 -p 8 -x $indexpath/mm9 -q -1 $R1 -2 $R2 --fast-local 2> $filebase".mm9.all.bowtie.log" | samtools view -bS -F 4  - | samtools sort -o $filebase".mm9.all.bam" -
+bowtie2 -p 8 -x $indexpath/mm9 -5 19 -q -1 $R1 -2 $R2 --fast-local 2> $filebase".mm9.all.bowtie.log" | samtools view -bS -F 4  - | samtools sort -o $filebase".mm9.all.bam" -
 samtools index $filebase".mm9.all.bam"
 samtools flagstat $filebase".mm9.all.bam" > $filebase".mm9.all.flagstat.txt"
 samtools idxstats $filebase".mm9.all.bam" > $filebase".mm9.all.idxstats.txt"
